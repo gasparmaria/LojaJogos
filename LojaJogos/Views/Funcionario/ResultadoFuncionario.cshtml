@@ -1,0 +1,75 @@
+﻿@model LojaJogos.Models.Funcionario
+@{ ViewBag.Title = "Resultado de Funcionario"; }
+
+<h2>Resultado de Funcionários</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Resultado do Funcionário</legend>
+
+        <div class="editor-label">
+            <b>@Html.DisplayNameFor(model => model.Codigo):</b>
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.Codigo)
+        </div>
+
+        <div class="editor-label">
+            <b>@Html.DisplayNameFor(model => model.Nome):</b>
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.Nome)
+        </div>
+
+        <div class="editor-label">
+            <b>@Html.DisplayNameFor(model => model.CPF):</b>
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.CPF)
+        </div>
+
+        <div class="editor-label">
+            <b>@Html.DisplayNameFor(model => model.RG):</b>
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.RG)
+        </div>
+
+        <div class="editor-label">
+            <b>@Html.DisplayNameFor(model => model.DataNasc):</b>
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.DataNasc)
+        </div>
+
+        <div class="editor-label">
+            <b>@Html.DisplayNameFor(model => model.Endereco):</b>
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.Endereco)
+        </div>
+
+        <div class="editor-label">
+            <b>@Html.DisplayNameFor(model => model.Celular):</b>
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.Celular)
+        </div>
+
+        <div class="editor-label">
+            <b>@Html.DisplayNameFor(model => model.Email):</b>
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.Email)
+        </div>
+
+        <div class="editor-label">
+            <b>@Html.DisplayNameFor(model => model.Cargo):</b>
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.Cargo)
+        </div>
+    </fieldset>
+    <br />
+}
