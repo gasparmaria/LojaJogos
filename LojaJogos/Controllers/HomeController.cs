@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using LojaJogos.Models;
+using LojaJogos.Repositorio;
 
 namespace LojaJogos.Controllers
 {

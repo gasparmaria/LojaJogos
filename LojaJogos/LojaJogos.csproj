@@ -46,6 +46,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MySql.Data, Version=8.0.26.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -131,6 +132,7 @@
     <Compile Include="Models\Funcionario.cs" />
     <Compile Include="Models\Jogo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositorio\Conexao.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -166,12 +168,12 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Cliente\CadastrodeClientes.cshtml" />
-    <Content Include="Views\Cliente\ResultadoCliente.cshtml" />
-    <Content Include="Views\Funcionario\CadastrodeFuncionarios.cshtml" />
-    <Content Include="Views\Funcionario\ResultadoFuncionario.cshtml" />
-    <Content Include="Views\Jogo\CadastrodeJogos.cshtml" />
-    <Content Include="Views\Jogo\ResultadoJogo.cshtml" />
+    <Content Include="Views\Funcionario\ListarFuncionario.cshtml" />
+    <Content Include="Views\Funcionario\Funcionario.cshtml" />
+    <Content Include="Views\Cliente\Cliente.cshtml" />
+    <Content Include="Views\Cliente\ListarCliente.cshtml" />
+    <Content Include="Views\Jogo\Jogo.cshtml" />
+    <Content Include="Views\Jogo\ListarJogo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

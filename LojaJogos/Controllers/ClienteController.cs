@@ -4,30 +4,45 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using LojaJogos.Models;
-using System.Collections.ObjectModel;
+using LojaJogos.Repositorio;
 
 namespace LojaJogos.Controllers
 {
     public class ClienteController : Controller
     {
-        public ActionResult CadastrodeClientes()
+        public ActionResult Cliente()
         {
             return View();
         }
-        [HttpPost]
 
-        public ActionResult CadastrodeClientes(Cliente cliente)
+        [HttpPost]
+        public ActionResult Cliente(Cliente cli)
         {
-            if (ModelState.IsValid)
+            try
             {
-                return View("ResultadoCliente", cliente);
+                if (ModelState.IsValid)
+                {
+                    var verificacao = cli.CadastrarCliente(cli);
+                    if(verificacao == true)
+                    {
+                        var listarCliente = cli.ListarCliente();
+                        return RedirectToAction("ListarCliente", listarCliente);
+                    }
+                }
+
+                return View(cli);
             }
-            return View(cliente);
+            catch
+            {
+                return View("ListarCliente");
+            }
         }
 
-        public ActionResult ResultadoCliente(Cliente cliente)
+        public ActionResult ListarCliente()
         {
-            return View(cliente);
+            var ExibirCli = new Cliente();
+            var TodosCli = ExibirCli.ListarCliente();
+            return View(TodosCli);
         }
     }
 }

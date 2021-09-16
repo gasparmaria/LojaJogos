@@ -1,4 +1,6 @@
 ﻿using System;
+using MySql.Data.MySqlClient;
+using LojaJogos.Repositorio;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -48,5 +50,70 @@ namespace LojaJogos.Models
 
         [Required(ErrorMessage = "O cargo é obrigatório.")]
         public string Cargo { get; set; }
+
+
+        // MÉTODOS FUNCIONÁRIO
+
+        Conexao con = new Conexao();
+
+        // inserindo os dados no banco
+        public bool CadastrarFuncionario(Funcionario func)
+        {
+            string data_sistema = Convert.ToDateTime(func.DataNasc).ToString("yyyy-MM-dd");
+            MySqlCommand cmd = new MySqlCommand("insert into tbFuncionario values(@FuncionarioID,@Nome,@CPF,@RG,@DataNasc,@Endereco,@Celular,@Email,@Cargo)", con.ConectarBD());
+            cmd.Parameters.Add("@FuncionarioID", MySqlDbType.Int32).Value = func.Codigo;
+            cmd.Parameters.Add("@Nome", MySqlDbType.VarChar).Value = func.Nome;
+            cmd.Parameters.Add("@CPF", MySqlDbType.VarChar).Value = func.CPF;
+            cmd.Parameters.Add("@RG", MySqlDbType.VarChar).Value = func.RG;
+            cmd.Parameters.Add("@DataNasc", MySqlDbType.DateTime).Value = data_sistema;
+            cmd.Parameters.Add("@Endereco", MySqlDbType.VarChar).Value = func.Endereco;
+            cmd.Parameters.Add("@Celular", MySqlDbType.VarChar).Value = func.Celular;
+            cmd.Parameters.Add("@Email", MySqlDbType.VarChar).Value = func.Email;
+            cmd.Parameters.Add("@Cargo", MySqlDbType.VarChar).Value = func.Cargo;
+            cmd.ExecuteNonQuery();
+            con.DesconectarBD();
+            return true;
+        }
+
+        // listar funcionário por ID
+        public Funcionario ListarFuncionarioID(int cod)
+        {
+            var comando = String.Format("select * from tbFuncionario where FuncionarioID = {0}", cod);
+            MySqlCommand cmd = new MySqlCommand(comando, con.ConectarBD());
+            var DadosCodFunc = cmd.ExecuteReader();
+            return ConverterDadosFuncionarios(DadosCodFunc).FirstOrDefault();
+        }
+
+        // listar todos os funcionários
+        public List<Funcionario> ListarFuncionario()
+        {
+            MySqlCommand cmd = new MySqlCommand("select * from tbFuncionario", con.ConectarBD());
+            var DadosFuncionario = cmd.ExecuteReader();
+            return ConverterDadosFuncionarios(DadosFuncionario);
+        }
+
+        // convertendo os dados do funcionário para string 
+        public List<Funcionario> ConverterDadosFuncionarios(MySqlDataReader dt)
+        {
+            var TodosFuncionarios = new List<Funcionario>();
+            while (dt.Read())
+            {
+                var FuncionarioTemp = new Funcionario()
+                {
+                    Codigo = dt["FuncionarioID"].ToString(),
+                    Nome = dt["Nome"].ToString(),
+                    CPF = dt["CPF"].ToString(),
+                    RG = dt["RG"].ToString(),
+                    DataNasc = DateTime.Parse(dt["DataNasc"].ToString()),
+                    Endereco = dt["Endereco"].ToString(),
+                    Celular = dt["Celular"].ToString(),
+                    Email = dt["Email"].ToString(),
+                    Cargo = dt["Cargo"].ToString()
+                };
+                TodosFuncionarios.Add(FuncionarioTemp);
+            }
+            dt.Close();
+            return TodosFuncionarios;
+        }
     }
 }
