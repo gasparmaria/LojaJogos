@@ -68,8 +68,8 @@
                 @Html.DisplayFor(modelItem => item.Sinopse)
             </td>
             <td>
-                @Html.ActionLink("Alterar", "AltJogo", null, new { cdJg = item.Codigo }, new { @class = "btn btn-primary btn-xs" })
-                @Html.ActionLink("Deletar", "DelJogo", null, new { cdJg = item.Codigo }, new { @class = "btn btn-danger btn-xs" })
+                @Html.ActionLink("Alterar", "AlterarJogo", null, new { cdJg = item.Codigo }, new { @class = "btn btn-primary btn-xs" })
+                @Html.ActionLink("Deletar", "DeletarJogo", null, new { cdJg = item.Codigo }, new { @class = "btn btn-danger btn-xs" })
             </td>
         </tr>
     }

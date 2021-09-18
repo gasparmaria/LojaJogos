@@ -33,10 +33,16 @@ namespace LojaJogos.Models
 
         [Required(ErrorMessage = "A plataforma é obrigatória.")]
         public string Plataforma { get; set; }
-
-        [Display(Name = "Ano de Lançamento")]
-        [Required(ErrorMessage = "O ano de lançamento é obrigatório.")]
-        public DateTime? AnoLanc { get; set; }
+        
+        [Display(Name = "Data de Lançamento")]
+        [Required(ErrorMessage = "A data de lançamento é obrigatória.")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime AnoLanc
+        {
+            get { return this.anoLanc.HasValue ? this.anoLanc.Value : DateTime.Now; }
+            set { this.anoLanc = value; }
+        }
+        private DateTime? anoLanc = null;
 
         [Required(ErrorMessage = "A sinopse é obrigatória.")]
         public string Sinopse { get; set; }
